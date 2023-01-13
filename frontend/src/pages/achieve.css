@@ -1,0 +1,154 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Play&display=swap");
+
+.Achieve {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+  background: url(../images/background.jpg);
+}
+
+.Cards {
+  text-align: center;
+  margin: 1rem 3rem;
+  padding: 2rem 0rem;
+  border-radius: 20px;
+}
+
+.all-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 30px;
+  margin: 0rem 3rem;
+  width: 90%;
+}
+
+.Achieve > h1 {
+  color: aliceblue;
+  font-size: 48px;
+  text-align: center;
+  margin: 1rem 3rem;
+  padding: 1rem 0rem;
+}
+
+@media only screen and (max-width: 850px) {
+  .Achieve > h1 {
+    font-size: 40px;
+    margin-right: 30px;
+  }
+  .Achieve {
+    margin-right: 15px;
+  }
+}
+
+.card-container {
+  background-color: #0a0a0a;
+  border-radius: 10px;
+  border-radius: 1rem;
+  border: 1px solid transparent;
+  backdrop-filter: blur(1rem);
+  box-shadow: 1.3rem 1.3rem 1.3rem rgba(36, 39, 43, 0.5);
+  border-top-color: rgba(53, 30, 30, 0.5);
+  border-left-color: rgba(53, 30, 30, 0.5);
+  border-bottom-color: rgba(53, 30, 30, 0.5);
+  border-right-color: rgba(31, 14, 14, 0.5);
+}
+
+.card-container > img {
+  width: 100%;
+  margin-top: 0.7rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.2s all ease-in;
+}
+
+.card-container > img:hover {
+  transform: scale(1.04);
+}
+
+.card-details {
+  color: white;
+}
+
+.card-details > h2 {
+  font-size: 24px;
+  text-align: center;
+  margin: 0.7rem 0rem;
+}
+
+.card-details > p {
+  font-size: 15px;
+  text-align: justify;
+  margin-bottom: 0.7rem;
+  margin-left: 2px;
+}
+
+.all-buttons {
+  margin-bottom: 10px;
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-evenly;
+  margin-left: 0px;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+.button-container > button {
+  padding: 0.5rem 0.5rem;
+  background-color: rgba(5, 34, 62, 0.4);
+  border: none;
+  color: white;
+  border-radius: 20px;
+  font-weight: 300;
+  font-size: 20px;
+  cursor: pointer;
+  transition: 0.2s all ease-in;
+}
+
+.button-container > button:hover {
+  background-color: rgba(2, 26, 50, 0.8);
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+@media only screen and (max-width: 1045px) {
+  .all-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .card-details > h2 {
+    font-size: 24px;
+  }
+  .card-details > p {
+    font-size: 14px;
+  }
+}
+
+@media only screen and (max-width: 850px) {
+  .all-cards {
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 20px;
+    width: 70%;
+  }
+  .card-details > h2 {
+    font-size: 30px;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  .all-buttons {
+    justify-content: space-evenly;
+    font-size: 10px;
+    padding-left: 10px;
+  }
+  .button-container > button {
+    font-size: 13px;
+  }
+  .card-details > p {
+    font-size: 15px;
+    padding-left: 2px;
+  }
+}

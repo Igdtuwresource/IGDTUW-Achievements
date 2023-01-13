@@ -1,0 +1,93 @@
+/* video {
+    object-fit: cover;
+    width: 100vw;
+    height: 89vh;
+    position: fixed;
+    z-index: -1;
+  } */
+
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Play&display=swap");
+* {
+  /* font-family: 'Play', sans-serif; */
+  font-family: "Roboto", sans-serif;
+}
+.hero-container {
+  background: url(../images/background.jpg) center center/cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.2);
+  object-fit: contain;
+}
+
+.hero-container > h1 {
+  color: #fff;
+  font-size: 4rem;
+  margin-top: -100px;
+  text-align: center;
+  font-weight: 100;
+}
+
+.hero-container > p {
+  margin-top: 8px;
+  color: #fff;
+  font-size: 32px;
+  font-family: "Roboto", sans-serif;
+}
+
+.hero-btns {
+  margin-top: 32px;
+}
+
+.hero-btns > button {
+  width: 30vw;
+  height: 7vh;
+  color: rgb(5, 5, 5);
+  background: white;
+  text-transform: uppercase;
+  font-size: 1rem;
+  font-weight: 400;
+  padding: 10px 30px;
+  transition: 0.5s;
+}
+
+.hero-btns > button :hover {
+  letter-spacing: 0.2em;
+  background: b;
+}
+
+@media screen and (max-width: 960px) {
+  .hero-container > h1 {
+    font-size: 2rem;
+    margin-top: -150px;
+    text-align: center;
+    font-weight: 100;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .hero-container > h1 {
+    font-size: 50px;
+    margin-top: -100px;
+    text-align: center;
+    font-weight: 100;
+    letter-spacing: 8px;
+  }
+
+  .hero-container > p {
+    font-size: 30px;
+  }
+
+  .btn-mobile {
+    display: block;
+    text-decoration: none;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}
