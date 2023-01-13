@@ -42,7 +42,7 @@ const PostSchema = new mongoose.Schema({
         type: String
     },
     issue_date:{
-        type: Date
+        type: String
     },
     tags:{
         type: [String]

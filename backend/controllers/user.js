@@ -176,6 +176,7 @@ export const updateProfile = async (req,res)=> {
         res.status(200).json({
           success: true,
           message: "Profile Updated",
+          user
         });
     } catch (error) {
         res.status(500).json({
@@ -329,7 +330,7 @@ export const forgotPassword = async (req, res)=> {
     
         await user.save();
     
-        const resetUrl = `${req.protocol}://${req.get("host")}/password/reset/${resetPasswordToken}`;
+        const resetUrl = `${req.protocol}://${req.get("host")}/api/user/password/reset/${resetPasswordToken}`;
     
         const message = `Reset Your Password by clicking on the link below: \n\n ${resetUrl}`;
     
@@ -379,8 +380,12 @@ export const resetPassword = async (req, res) => {
         if (!user) {
           return res.status(401).json({
             success: false,
-            message: "Token is invalid or has expired",
+            message: "Reset Password Token is invalid or has been expired",
           });
+        }
+
+        if(req.body.password !== req.body.confirmPassword){
+            return next(createError(400, "Password does not password"));
         }
     
         user.password = req.body.password;

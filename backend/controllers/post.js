@@ -1,13 +1,17 @@
 import User from "../models/User.js";
 import Post from "../models/Post.js";
+import ApiFeatures from "../utils/apifeatures.js";
 
 
 //Create Post
 export const createPost = async (req,res) => {
     try{
       const newPostData = {
-        caption: req.body.caption,
+        achievement_desc: req.body.achievement_desc,
         owner: req.user._id,
+        issuer_organisation: req.body.issuer_organisation,
+        issue_date: req.body.issue_date,
+        tags: req.body.tags
       };
   
       const post = await Post.create(newPostData);
@@ -20,6 +24,7 @@ export const createPost = async (req,res) => {
       res.status(201).json({
         success: true,
         message: "Post created",
+        post
       });
     } catch (error) {
       res.status(500).json({
@@ -118,25 +123,40 @@ export const updatePostDesc = async (req, res) => {
     try {
         const post = await Post.findById(req.params.id);
     
+        const { achievement_desc, issuer_organisation , issue_date, tags } = req.body;
+
         if (!post) {
-          return res.status(404).json({
-            success: false,
-            message: "Post not found",
-          });
+            return res.status(404).json({
+              success: false,
+              message: "Post not found",
+            });
         }
-    
+      
         if (post.owner.toString() !== req.user._id.toString()) {
-          return res.status(401).json({
-            success: false,
-            message: "Unauthorized",
-          });
+            return res.status(401).json({
+              success: false,
+              message: "Unauthorized",
+            });
         }
     
-        post.achievement_desc = req.body.achievement_desc;
+        if (achievement_desc) {
+          post.achievement_desc = achievement_desc;
+        }
+        if (issuer_organisation) {
+          post.issuer_organisation = issuer_organisation;
+        }
+        if (issue_date) {
+            post.issue_date = issue_date;
+        }
+        if (tags) {
+            post.tags = tags;
+        }
+    
         await post.save();
         res.status(200).json({
           success: true,
           message: "Post updated",
+          post
         });
     } catch (error) {
         res.status(500).json({
@@ -177,6 +197,7 @@ export const commentOnPost = async (req, res)=>{
           return res.status(200).json({
             success: true,
             message: "Comment Updated",
+            post
           });
         } else {
           post.comments.push({
@@ -188,6 +209,7 @@ export const commentOnPost = async (req, res)=>{
           return res.status(200).json({
             success: true,
             message: "Comment added",
+            post
           });
         }
     } catch (error) {
@@ -231,7 +253,7 @@ export const deleteComment = async(req, res) => {
     
           return res.status(200).json({
             success: true,
-            message: "Selected Comment has deleted",
+            message: "Selected Comment is deleted",
           });
         } else {
           post.comments.forEach((item, index) => {
@@ -247,6 +269,44 @@ export const deleteComment = async(req, res) => {
             message: "Your Comment has deleted",
           });
         }
+    } catch (error) {
+        res.status(500).json({
+          success: false,
+          message: error.message,
+        });
+    }
+};
+
+export const getAllPostsfilter = async (req, res) => {
+    const tagss = req.query.tags.split(',');
+    //const apiFeatures = new ApiFeatures(Post.find(),req.query.tags.split(',')).filter();
+    try {
+        /*
+        const posts = await Promise.all(apiFeatures.map(tags=>{
+            return Post({tags:tags});
+        }));
+        */
+        const list = await Promise.all(tagss.map(tags=>{
+            return Post({tags:tags})
+        }))
+    
+        res.status(200).json({
+          success: true,
+          list,
+        });
+    } catch (error) {
+        res.status(500).json({
+          success: false,
+          message: error.message,
+        });
+    }
+};
+
+
+export const getallPost = async (req,res)=>{
+    try{
+        const post = await Post.find();
+        res.status(200).json(post);
     } catch (error) {
         res.status(500).json({
           success: false,
