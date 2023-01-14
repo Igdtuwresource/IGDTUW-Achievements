@@ -22,7 +22,10 @@ const PostSchema = new mongoose.Schema({
           ref: "User",
         },
     ],
-    
+    totalLikes: {
+        type: Number,
+        default: 0,
+    },
     comments: [
         {
           user: {
@@ -35,6 +38,10 @@ const PostSchema = new mongoose.Schema({
           },
         },
     ],
+    totalComments: {
+        type: Number,
+        default: 0,
+    },
     achievement_desc: {
         type: String
     },
@@ -44,9 +51,17 @@ const PostSchema = new mongoose.Schema({
     issue_date:{
         type: String
     },
-    tags:{
+    category:{
+        type: String,
+        required: [true, "Please enter a achievement category"],          // can be -> Research, Internship, Hackathon, Olacement, Quiz, Scholoraship, Codding contest, CP, Technical Program, Speaker@Conference  
+    },
+    tags: {
         type: [String]
-    }
+    },
+    publicPost: {
+        type: Boolean,
+        default: true,
+    },
     
 });
 

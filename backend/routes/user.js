@@ -1,5 +1,5 @@
 import express from "express";
-import { register, login, logout, updatePassword, deleteMyProfile, myProfile, getUserProfile, getAllUsers, forgotPassword, resetPassword, getMyPost, getUserPosts, updateProfile } from "../controllers/user.js";
+import { register, login, logout, updatePassword, deleteMyProfile, myProfile, getUserProfile, getAllUsers, forgotPassword, resetPassword, getMyPost, getUserPosts, updateProfile, followUser } from "../controllers/user.js";
 import { isAuthenticated } from "../utils/Auth.js";
 
 
@@ -30,5 +30,7 @@ router.get("/users", isAuthenticated, getAllUsers);
 router.post("/forgot/password", forgotPassword);
 
 router.put("/password/reset/:token", resetPassword);
+
+router.get("/follow/:id", isAuthenticated, followUser);
 
 export default router

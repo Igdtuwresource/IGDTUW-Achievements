@@ -11,7 +11,9 @@ export const createPost = async (req,res) => {
         owner: req.user._id,
         issuer_organisation: req.body.issuer_organisation,
         issue_date: req.body.issue_date,
-        tags: req.body.tags
+        category: req.body.category,
+        tags: req.body.tags,
+        publicPost: req.body.publicPost
       };
   
       const post = await Post.create(newPostData);
@@ -92,6 +94,8 @@ export const likeUnlikePost = async (req, res) => {
           const index = post.likes.indexOf(req.user._id);
     
           post.likes.splice(index, 1);
+
+          post.totalLikes --;
     
           await post.save();
     
@@ -101,6 +105,7 @@ export const likeUnlikePost = async (req, res) => {
           });
         } else {
           post.likes.push(req.user._id);
+          post.totalLikes ++;
     
           await post.save();
     
@@ -118,12 +123,12 @@ export const likeUnlikePost = async (req, res) => {
 };
 
 
-//Update Achievement description
+//Update Achievement descriptions
 export const updatePostDesc = async (req, res) => {
     try {
         const post = await Post.findById(req.params.id);
     
-        const { achievement_desc, issuer_organisation , issue_date, tags } = req.body;
+        const { achievement_desc, issuer_organisation , issue_date, tags, category, publicPost } = req.body;
 
         if (!post) {
             return res.status(404).json({
@@ -150,6 +155,12 @@ export const updatePostDesc = async (req, res) => {
         }
         if (tags) {
             post.tags = tags;
+        }
+        if (category) {
+          post.category = category;
+        }
+        if (publicPost) {
+          post.publicPost = publicPost;
         }
     
         await post.save();
@@ -205,6 +216,7 @@ export const commentOnPost = async (req, res)=>{
             comment: req.body.comment,
           });
     
+          post.totalComments ++ ;
           await post.save();
           return res.status(200).json({
             success: true,
@@ -248,6 +260,8 @@ export const deleteComment = async(req, res) => {
               return post.comments.splice(index, 1);
             }
           });
+
+          post.totalComments --;
     
           await post.save();
     
@@ -262,11 +276,12 @@ export const deleteComment = async(req, res) => {
             }
           });
     
+          post.totalComments;
           await post.save();
     
           return res.status(200).json({
             success: true,
-            message: "Your Comment has deleted",
+            message: "Your Comment is deleted",
           });
         }
     } catch (error) {
@@ -278,21 +293,25 @@ export const deleteComment = async(req, res) => {
 };
 
 export const getAllPostsfilter = async (req, res) => {
-    const tagss = req.query.tags.split(',');
-    //const apiFeatures = new ApiFeatures(Post.find(),req.query.tags.split(',')).filter();
+    //const tagss = req.query.tags.split(',');
+    //const apiFeatures = new ApiFeatures(user.posts[i].findById(),req.query).filter();
     try {
-        /*
-        const posts = await Promise.all(apiFeatures.map(tags=>{
-            return Post({tags:tags});
-        }));
-        */
-        const list = await Promise.all(tagss.map(tags=>{
-            return Post({tags:tags})
-        }))
-    
+        //const posts = await (apiFeatures.query).populate(owner);
+        const postlist = [];
+        //const posts = await apiFeatures.query;
+        for (let i = 0; i < posts.length; i++) {
+          const apiFeatures = new ApiFeatures(Post.findById(user.posts[i]),req.query).filter();
+          const posts = await apiFeatures.query;
+          //const post = await Post.findById(user.posts[i])
+          //const posts = await (apiFeatures.query).populate("owner");
+          if(post.owner.setPublic && post.publicPost){
+            postlist.push(posts);
+          }
+        }
+
         res.status(200).json({
           success: true,
-          list,
+          postlist,
         });
     } catch (error) {
         res.status(500).json({
@@ -305,7 +324,7 @@ export const getAllPostsfilter = async (req, res) => {
 
 export const getallPost = async (req,res)=>{
     try{
-        const post = await Post.find();
+        const post = await Post.find().populate("owner");
         res.status(200).json(post);
     } catch (error) {
         res.status(500).json({
@@ -314,3 +333,27 @@ export const getallPost = async (req,res)=>{
         });
     }
 };
+
+
+//Get Post of Following
+export const getPostOfFollowing = async (req, res) => {
+  try {
+    const user = await User.findById(req.user._id);
+
+    const posts = await Post.find({
+      owner: {
+        $in: user.following,
+      },
+    }).populate("owner likes comments.user");
+
+    res.status(200).json({
+      success: true,
+      posts: posts.reverse(),
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+}

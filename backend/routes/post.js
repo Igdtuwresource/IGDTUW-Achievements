@@ -1,5 +1,5 @@
 import express from "express";
-import { createPost, likeUnlikePost, deleteComment, deletePost, updatePostDesc, commentOnPost, getAllPostsfilter, getallPost } from "../controllers/post.js";
+import { createPost, likeUnlikePost, deleteComment, deletePost, updatePostDesc, commentOnPost, getAllPostsfilter, getallPost, getPostOfFollowing } from "../controllers/post.js";
 import { isAuthenticated } from "../utils/Auth.js";
 
 const router = express.Router();
@@ -20,5 +20,6 @@ router.get("/postsf", isAuthenticated, getAllPostsfilter);
 
 router.get("/posts", isAuthenticated, getallPost)
 
+router.get("/posts/following", isAuthenticated, getPostOfFollowing);
 
 export default router

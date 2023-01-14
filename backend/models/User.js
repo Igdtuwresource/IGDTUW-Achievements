@@ -37,6 +37,37 @@ const UserSchema = new mongoose.Schema({
     year: {
         type: Number,
     },
+    skillset: {
+        type: [String]
+    },
+    bio: {
+        type: String
+    },
+    setPublic: {
+        type: Boolean,
+        default: true,
+    },
+    followers: [
+        {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "User",
+        },
+    ],
+    Nofollowers:{
+        type: Number,
+        default: 0
+    },
+    
+    following: [
+        {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "User",
+        },
+    ],
+    Nofollowing:{
+        type: Number,
+        default: 0,
+    },
 
     resetPasswordToken: String,
     resetPasswordExpire: Date,
