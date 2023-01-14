@@ -9,9 +9,10 @@ function Home() {
 
     return (
         <div className='hero-container'>
-            <h1>WELCOME TO HALL OF FAME</h1>
+            {/* <video src='/videos/video-1.mp4' autoPlay loop muted /> */}
+            {/* <h1>WELCOME TO HALL OF FAME</h1> */}
             <div className='hero-btns'>
-                <button type="button"  onClick={handleClick}>
+                <button type="button" onClick={handleClick}>
                     Click to Enter
                 </button>
             </div>

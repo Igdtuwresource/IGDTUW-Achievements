@@ -7,6 +7,7 @@ import Dashboard from './pages/Dashboard';
 import Form from './pages/Form';
 import Edit from './pages/personal';
 import LoginProvider from './components/LoginProvider';
+import Register from './pages/register';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path='/Form' element={<Form />} />
         <Route path='/edit' element={<Edit />} />
         <Route path='/signin' element={<Signin />} />
+        <Route path='/register' element={<Register />} />
         <Route
           path='/dashboard'
           element={

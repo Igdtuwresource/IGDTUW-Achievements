@@ -39,7 +39,7 @@ const Dashboard = () => {
       <div className="Main">
         <div className="personalInfo">
           <br></br>
-          <h2>Personal Information</h2>
+
           <div className="personContainer">
             <img
               src={photoURL}

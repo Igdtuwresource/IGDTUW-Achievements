@@ -30,7 +30,6 @@ function Achieve() {
             <LoginProvider>
                 <NavBar />
             </LoginProvider>
-            <h1>HALL OF FAME</h1>
             <Button categories={cats} handleClick={filter} />
             <Card allcards={cards} />
             <br />

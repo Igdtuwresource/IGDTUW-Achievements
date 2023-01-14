@@ -49,6 +49,7 @@ const Navigation2 = () => {
             </Nav>
             <Nav className="gap-2">
               <Nav.Link className="btn btn-black" href="/achievements">Home</Nav.Link>
+              <Nav.Link className="btn btn-black" href="/register">Register</Nav.Link>
               <Nav.Link className="btn btn-black" href="/signin">Login</Nav.Link>
             </Nav>
           </Navbar.Collapse>

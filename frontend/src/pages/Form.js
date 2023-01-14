@@ -1,7 +1,7 @@
-import React, { useState, setState } from 'react';
+import { useState, setState } from 'react';
 import './form.css'
 import Select from '@mui/material/Select';
-import * as Rect from 'react';
+import * as React from 'react';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
@@ -14,10 +14,11 @@ import TextField from '@mui/material/TextField';
 
 function Form() {
 
-    const [team, setTeam] = Rect.useState('');
-    const [Achievement_cat, setAchievement_cat] = Rect.useState('');
-    const [year, setYear] = Rect.useState('');
-    const [achievement, setAchievement] = Rect.useState('');
+    const [team, setTeam] = React.useState('');
+    const [publicP, setPublicP] = React.useState('');
+    const [Achievement_cat, setAchievement_cat] = React.useState('');
+    const [year, setYear] = React.useState('');
+    const [achievement, setAchievement] = React.useState('');
 
 
     const handleachievement = (event) => {
@@ -26,6 +27,10 @@ function Form() {
 
     const handleteam = (event) => {
         setTeam(event.target.value);
+    };
+
+    const handlepublic = (event) => {
+        setPublicP(event.target.value);
     };
 
     const handleyear = (event) => {
@@ -38,7 +43,7 @@ function Form() {
 
 
     const handleSubmit = () => {
-        console.log(Achievement_cat, year, team, achievement);
+        console.log(Achievement_cat, year, team, publicP, achievement);
     }
 
     const handleCancel = () => {
@@ -109,6 +114,26 @@ function Form() {
                                 onChange={handleteam}
                                 autoWidth
                                 label="Team Event"
+                            >
+                                <MenuItem value="">
+                                    <em>None</em>
+                                </MenuItem>
+                                <MenuItem value={"Yes"}>Yes</MenuItem>
+                                <MenuItem value={"No"}>No</MenuItem>
+                            </Select>
+                        </FormControl>
+                    </div>
+
+                    <div className="publicP">
+                        <FormControl sx={{ m: 2, minWidth: 480 }}>
+                            <InputLabel id="PublicP">Share publically?</InputLabel>
+                            <Select
+                                labelId="publicP"
+                                id="publicP"
+                                value={publicP}
+                                onChange={handlepublic}
+                                autoWidth
+                                label="Share Publically>"
                             >
                                 <MenuItem value="">
                                     <em>None</em>
