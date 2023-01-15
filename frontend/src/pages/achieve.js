@@ -28,7 +28,7 @@ function Achieve() {
         <div className="Achieve">
 
             <LoginProvider>
-                <NavBar />
+                <NavBar fixed="top" />
             </LoginProvider>
             <Button categories={cats} handleClick={filter} />
             <Card allcards={cards} />

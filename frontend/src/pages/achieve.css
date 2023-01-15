@@ -4,8 +4,8 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Roboto", sans-serif;
-  background: url(../images/background.jpg);
+  font-family: "Play", sans-serif;
+  background-color: white;
 }
 
 .Cards {
@@ -43,10 +43,9 @@
 
 .card-container {
   background-color: #0a0a0a;
-  border-radius: 10px;
-  border-radius: 1rem;
   border: 1px solid transparent;
   backdrop-filter: blur(1rem);
+  border-radius: 1rem;
   box-shadow: 1.3rem 1.3rem 1.3rem rgba(36, 39, 43, 0.5);
   border-top-color: rgba(53, 30, 30, 0.5);
   border-left-color: rgba(53, 30, 30, 0.5);
@@ -55,19 +54,15 @@
 }
 
 .card-container > img {
-  width: 100%;
+  width: 95%;
   margin-top: 0.7rem;
+  margin-left: 0.6rem;
   display: flex;
   align-items: center;
   flex-direction: column;
   flex-wrap: wrap;
-  border-radius: 10px;
   cursor: pointer;
   transition: 0.2s all ease-in;
-}
-
-.card-container > img:hover {
-  transform: scale(1.04);
 }
 
 .card-details {

@@ -1,4 +1,3 @@
-import { useState, setState } from 'react';
 import './form.css'
 import Select from '@mui/material/Select';
 import * as React from 'react';
@@ -11,19 +10,29 @@ import TextField from '@mui/material/TextField';
 
 
 
-
 function Form() {
 
     const [team, setTeam] = React.useState('');
     const [publicP, setPublicP] = React.useState('');
     const [Achievement_cat, setAchievement_cat] = React.useState('');
     const [year, setYear] = React.useState('');
+    const [Organization, setOrganization] = React.useState('');
     const [achievement, setAchievement] = React.useState('');
+    const [image, setImage] = React.useState('');
 
 
     const handleachievement = (event) => {
         setAchievement(event.target.value);
     };
+    const handleOrganization = (event) => {
+        setOrganization(event.target.value);
+    };
+
+    const handleImage = (event) => {
+        setImage(event.target.value);
+    };
+
+
 
     const handleteam = (event) => {
         setTeam(event.target.value);
@@ -43,7 +52,7 @@ function Form() {
 
 
     const handleSubmit = () => {
-        console.log(Achievement_cat, year, team, publicP, achievement);
+        console.log(Achievement_cat, year, team, Organization, publicP, achievement, image);
     }
 
     const handleCancel = () => {
@@ -59,6 +68,7 @@ function Form() {
                         <FormControl sx={{ m: 2, minWidth: 480 }}>
                             <InputLabel id="Achievement Category">Achievement Category</InputLabel>
                             <Select
+                                required
                                 labelId="Achievement Category"
                                 id="Achievement_Category"
                                 value={Achievement_cat}
@@ -66,9 +76,6 @@ function Form() {
                                 autoWidth
                                 label="Achievement Category"
                             >
-                                <MenuItem value="">
-                                    <em>None</em>
-                                </MenuItem>
                                 <MenuItem value={"Hackathon"}>Hackathon</MenuItem>
                                 <MenuItem value={"Ideathon"}>Ideathon</MenuItem>
                                 <MenuItem value={"Research"}>Research</MenuItem>
@@ -82,32 +89,34 @@ function Form() {
                             </Select>
                         </FormControl>
                     </div>
-                    <div>
-                        <FormControl sx={{ m: 2, minWidth: 480 }}>
-                            <InputLabel id="Year">Year</InputLabel>
-                            <Select
-                                labelId="Year"
-                                id="Year"
-                                value={year}
-                                onChange={handleyear}
-                                autoWidth
-                                label="Year"
-                            >
-                                <MenuItem value="">
-                                    <em>None</em>
-                                </MenuItem>
-                                <MenuItem value={1}>First</MenuItem>
-                                <MenuItem value={2}>Second</MenuItem>
-                                <MenuItem value={3}>Third</MenuItem>
-                                <MenuItem value={4}>Fourth</MenuItem>
-                            </Select>
-                        </FormControl>
+                    <div className="year">
+                        <Box
+                            component="year"
+                            sx={{
+                                '& .MuiTextField-root': { m: 2, width: 480 },
+                            }}
+                            noValidate
+                            required
+                            autoComplete="off"
+                            value={year}
+                            onChange={handleyear}
+                        >
+                            <div>
+                                <TextField
+                                    required
+                                    id="year"
+                                    label="Year of graduation"
+                                    type="default"
+                                />
+                            </div>
+                        </Box>
                     </div>
 
                     <div className="team">
                         <FormControl sx={{ m: 2, minWidth: 480 }}>
                             <InputLabel id="Team Event">Team Event</InputLabel>
                             <Select
+                                required
                                 labelId="Team Event"
                                 id="Team Event"
                                 value={team}
@@ -115,19 +124,39 @@ function Form() {
                                 autoWidth
                                 label="Team Event"
                             >
-                                <MenuItem value="">
-                                    <em>None</em>
-                                </MenuItem>
                                 <MenuItem value={"Yes"}>Yes</MenuItem>
                                 <MenuItem value={"No"}>No</MenuItem>
                             </Select>
                         </FormControl>
                     </div>
 
+                    <div className="Organiztion">
+                        <Box
+                            component="Organization"
+                            sx={{
+                                '& .MuiTextField-root': { m: 2, width: 480 },
+                            }}
+                            noValidate
+                            autoComplete="off"
+                            value={Organization}
+                            onChange={handleOrganization}
+                        >
+                            <div>
+                                <TextField
+                                    required
+                                    id="Organization"
+                                    label="Name of Oragnization"
+                                    type="default"
+                                />
+                            </div>
+                        </Box>
+                    </div>
+
                     <div className="publicP">
                         <FormControl sx={{ m: 2, minWidth: 480 }}>
                             <InputLabel id="PublicP">Share publically?</InputLabel>
                             <Select
+                                required
                                 labelId="publicP"
                                 id="publicP"
                                 value={publicP}
@@ -135,9 +164,6 @@ function Form() {
                                 autoWidth
                                 label="Share Publically>"
                             >
-                                <MenuItem value="">
-                                    <em>None</em>
-                                </MenuItem>
                                 <MenuItem value={"Yes"}>Yes</MenuItem>
                                 <MenuItem value={"No"}>No</MenuItem>
                             </Select>
@@ -165,6 +191,29 @@ function Form() {
                             </div>
                         </Box>
                     </div>
+
+                    <div className="Image">
+                        <Box
+                            component="Image"
+                            sx={{
+                                '& .MuiTextField-root': { m: 2, width: 480 },
+                            }}
+                            noValidate
+                            value={Image}
+                            onChange={handleImage}
+                        >
+                            <div>
+                                <p>Upload an image relevent to you acheivement</p>
+                                <input type="file"
+                                    id="image"
+                                    label="Image"
+                                />
+                            </div>
+                        </Box>
+                    </div>
+
+
+
                 </div>
                 <div class="footer">
                     <button onClick={() => handleSubmit()} type="submit" class="btn">Submit</button>
