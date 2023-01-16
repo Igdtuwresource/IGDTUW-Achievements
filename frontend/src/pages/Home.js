@@ -9,6 +9,7 @@ function Home() {
 
     return (
         <div className='hero-container'>
+            <h1> The World's gonna know your Name</h1>
 
             <div className='hero-btns'>
                 <button type="button" onClick={handleClick}>

@@ -5,7 +5,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Play", sans-serif;
-  background-color: white;
+  background: url(../images/bg7.jpeg) center center/cover;
 }
 
 .Cards {

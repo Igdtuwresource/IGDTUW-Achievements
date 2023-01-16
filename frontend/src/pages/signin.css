@@ -3,7 +3,7 @@
 
 #simpleModal {
   font-family: "Play", sans-serif;
-  background-image: url("../images/background.jpg");
+  background: url(../images/bg1.jpeg) center center/cover;
   align-items: center;
 }
 

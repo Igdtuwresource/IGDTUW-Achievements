@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import "./dashboard.css";
+import { data } from "../data";
+import card from "../components/Card";
 import Card from 'react-bootstrap/Card';
 import NavBar2 from "../components/Nav2";
 import CardImg from "../images/Card.png";
@@ -8,9 +10,9 @@ import Sidebar from "../components/sideNav";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Button from 'react-bootstrap/Button';
 
 const Dashboard = () => {
+  const [cards, setCards] = useState(data);
   return (
     <div className="Dashboard">
       {/* <div className="Navbar">
@@ -21,7 +23,8 @@ const Dashboard = () => {
       </div>
 
       <div className="MainContent">
-        <h1>Welcome User!</h1>
+        <br />
+        <br />
         <Container fluid>
           <Row>
             <Col>
@@ -65,15 +68,6 @@ const Dashboard = () => {
           </Row>
           <Row>
             <Col>
-              <Card className="text-center">
-                <Card.Header>Profiles</Card.Header>
-                <Card.Body>
-                  <Card.Text>
-                    With supporting text below as a natural lead-in to additional content.
-                  </Card.Text>
-                  <Button variant="primary">LeetCode</Button> <Button variant="primary">Portfolio</Button> <Button variant="primary">Twitter</Button>
-                </Card.Body>
-              </Card>
 
             </Col>
           </Row>
@@ -81,6 +75,12 @@ const Dashboard = () => {
             <br />
             <br />
             <h1>Posts</h1>
+            <br />
+            <br />
+            <Col>
+              <card allcards={cards} />
+            </Col>
+
           </Row>
 
         </Container>

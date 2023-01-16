@@ -31,7 +31,7 @@ const Sidebar = () => {
                             <CDBSidebarMenuItem icon="plus">New Post</CDBSidebarMenuItem>
                         </NavLink>
                         <NavLink exact to="/edit" activeClassName="activeClicked">
-                            <CDBSidebarMenuItem icon="user">Edit Profile & <br /> other ySettings</CDBSidebarMenuItem>
+                            <CDBSidebarMenuItem icon="user">Edit Profile & <br /> other Settings</CDBSidebarMenuItem>
                         </NavLink>
 
                         <NavLink exact to="/" target="_blank" activeClassName="activeClicked">

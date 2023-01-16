@@ -8,8 +8,6 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 
 
-
-
 function Form() {
 
     const [team, setTeam] = React.useState('');
@@ -60,7 +58,8 @@ function Form() {
     }
 
     return (
-        <>
+        <div className='fo'>
+            <h1> Add your Achievement</h1>
             <div className="form">
                 <div className="Achievement_cat">
                     <label className="form__label"></label>
@@ -223,7 +222,7 @@ function Form() {
 
             </div>
             {/* < Footer /> */}
-        </>
+        </div>
 
     )
 }

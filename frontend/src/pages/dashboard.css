@@ -2,6 +2,7 @@
   text-align: center;
   font-family: "play", sans-serif;
   display: flex;
+  background: url(../images/bg5.jpg) center center/cover;
 }
 .SideNav {
   height: 100vh;
@@ -10,8 +11,8 @@
   /* width: fit-content; */
 }
 
-.MainContent {
-}
+/* .MainContent {
+} */
 
 /* .Dashboard > .MainContent > h1 {
   color: aliceblue;

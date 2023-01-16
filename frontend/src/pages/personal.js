@@ -2,23 +2,14 @@ import React from "react";
 import './personal.css';
 import NavBar from "../components/Navbar";
 
-/*please add a feature to upload image in this form 
-as well as the original image that shall be displayed
-will be from the google image of  the user which is 
-not uploaded for all users. Also add a feature to
-scale/resize this image so that it can be showed clearly.
-Also change the look of this form as per the add acheivement 
-form for uniformity.
-*/
-
 const edit = () => {
   return (
     <>
 
-    <NavBar/>
+      <NavBar />
 
       <div className='details'>
-  
+
         <div className='info'>
           <div class="name">
             <label for="fullName">Full Name   </label>
